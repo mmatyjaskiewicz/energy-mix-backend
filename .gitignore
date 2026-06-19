@@ -1,0 +1,161 @@
+##################################################
+# GLOBAL
+##################################################
+
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+##################################################
+# VISUAL STUDIO / RIDER / VS CODE
+##################################################
+
+.vs/
+.idea/
+.vscode/
+
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+##################################################
+# .NET
+##################################################
+
+bin/
+obj/
+out/
+publish/
+
+##################################################
+# NUGET
+##################################################
+
+packages/
+*.nupkg
+
+##################################################
+# ASP.NET CONFIGURATION
+##################################################
+
+appsettings.Development.json
+appsettings.*.local.json
+secrets.json
+**/secrets.json
+
+##################################################
+# TESTS / COVERAGE
+##################################################
+
+TestResults/
+coverage/
+coverage-final.json
+*.coverage
+*.coveragexml
+
+##################################################
+# NODE / ANGULAR
+##################################################
+
+node_modules/
+dist/
+.angular/
+.cache/
+
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+
+##################################################
+# CERTIFICATES / KEYS
+##################################################
+
+*.key
+*.pem
+*.pfx
+
+##################################################
+# JAVA / SPRING / INTELLIJ IDEA
+##################################################
+
+# IntelliJ
+.idea/
+*.iml
+.idea_modules/
+
+# Maven
+target/
+
+# Gradle
+.gradle/
+build/
+
+# Java compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# Spring Boot
+application-local.properties
+application-local.yml
+application-local.yaml
+
+application-dev.properties
+application-dev.yml
+application-dev.yaml
+
+application-prod.properties
+application-prod.yml
+application-prod.yaml
+
+hs_err_pid*
+replay_pid*
+
+##################################################
+# DATABASES
+##################################################
+
+*.db
+*.sqlite
+*.sqlite3
+
+##################################################
+# DOCKER
+##################################################
+
+docker-compose.override.yml
+docker-compose.vs.debug.yml
+.docker/
+
+##################################################
+# LOGS
+##################################################
+
+logs/
+*.stackdump
+
+##################################################
+# PUBLISH / DEPLOY
+##################################################
+
+*.pubxml
+*.publishsettings
+
+##################################################
+# OS
+##################################################
+
+Desktop.ini
+
+##################################################
+# MISC
+##################################################
+
+*.bak
+*.orig

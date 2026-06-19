@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyMix.Api", "EnergyMix.Api\EnergyMix.Api.csproj", "{4DE72CFE-8E92-4F89-BB78-9F1BD11A13F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyMix.Tests", "EnergyMix.Tests\EnergyMix.Tests.csproj", "{2D535352-2E1B-4F40-9F7B-BBACA19D3799}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DE72CFE-8E92-4F89-BB78-9F1BD11A13F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DE72CFE-8E92-4F89-BB78-9F1BD11A13F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DE72CFE-8E92-4F89-BB78-9F1BD11A13F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DE72CFE-8E92-4F89-BB78-9F1BD11A13F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D535352-2E1B-4F40-9F7B-BBACA19D3799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D535352-2E1B-4F40-9F7B-BBACA19D3799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D535352-2E1B-4F40-9F7B-BBACA19D3799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D535352-2E1B-4F40-9F7B-BBACA19D3799}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
