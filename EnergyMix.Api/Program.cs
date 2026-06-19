@@ -1,3 +1,4 @@
+using EnergyMix.Api.Clients;
 using EnergyMix.Api.Interfaces;
 using EnergyMix.Api.Services;
 
@@ -11,6 +12,7 @@ public class Program
         
         builder.Services.AddControllers();
         builder.Services.AddHttpClient<ICarbonIntensityClient, CarbonIntensityClient>();
+        builder.Services.AddScoped<ICarbonIntensityService, CarbonIntensityService>();
         
         var app = builder.Build();
         

@@ -2,7 +2,7 @@
 using EnergyMix.Api.DTOs.External;
 using EnergyMix.Api.Interfaces;
 
-namespace EnergyMix.Api.Services;
+namespace EnergyMix.Api.Clients;
 
 public class CarbonIntensityClient(HttpClient httpClient) : ICarbonIntensityClient
 {
