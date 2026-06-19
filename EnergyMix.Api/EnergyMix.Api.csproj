@@ -6,4 +6,12 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Clients\" />
+      <Folder Include="Controllers\" />
+      <Folder Include="DTOs\" />
+      <Folder Include="Interfaces\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>
