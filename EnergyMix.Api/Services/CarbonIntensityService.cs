@@ -28,24 +28,19 @@ public class CarbonIntensityService(ICarbonIntensityClient carbonIntensityClient
             .Select(group => new EnergySourceResponse
             {
                 Fuel = group.Key,
-                AveragePercentage = group.Average(x => x.Perc)
+                AveragePercentage = Math.Round(group.Average(x => x.Perc),2)
             })
             .ToList();
 
         var cleanEnergyPercentage = averages
-            .Where(x =>
-                x.Fuel == "biomass" ||
-                x.Fuel == "nuclear" ||
-                x.Fuel == "hydro" ||
-                x.Fuel == "solar" ||
-                x.Fuel == "wind")
+            .Where(x => x.Fuel == "biomass" || x.Fuel == "nuclear" || x.Fuel == "hydro" || x.Fuel == "solar" || x.Fuel == "wind")
             .Sum(x => x.AveragePercentage);
 
         return new EnergyMixResponse
         {
             Date = DateOnly.FromDateTime(day.Intervals.First().From),
             Sources = averages,
-            CleanEnergyPercentage = cleanEnergyPercentage
+            CleanEnergyPercentage = Math.Round(cleanEnergyPercentage, 2)
         };
     }
     
