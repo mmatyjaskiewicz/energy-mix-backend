@@ -1,4 +1,5 @@
 using EnergyMix.Api.Clients;
+using EnergyMix.Api.Exceptions;
 using EnergyMix.Api.Interfaces;
 using EnergyMix.Api.Services;
 
@@ -11,6 +12,8 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         
         builder.Services.AddControllers();
+        builder.Services.AddProblemDetails();
+        builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
         builder.Services.AddHttpClient<ICarbonIntensityClient, CarbonIntensityClient>();
         builder.Services.AddScoped<ICarbonIntensityService, CarbonIntensityService>();
         
@@ -30,6 +33,8 @@ public class Program
         app.UseHttpsRedirection();
         
         app.UseCors("AllowFrontend");
+        
+        app.UseExceptionHandler();
 
         app.UseAuthorization();
         

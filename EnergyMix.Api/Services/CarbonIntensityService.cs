@@ -1,6 +1,7 @@
 ﻿using EnergyMix.Api.DTOs.External;
 using EnergyMix.Api.DTOs.Responses;
 using EnergyMix.Api.DTOs.Results;
+using EnergyMix.Api.Exceptions;
 using EnergyMix.Api.Interfaces;
 
 namespace EnergyMix.Api.Services;
@@ -12,7 +13,7 @@ public class CarbonIntensityService(ICarbonIntensityClient carbonIntensityClient
     {
         if (hours < 1 || hours > 6)
         {
-            throw new ArgumentException("Hours must be between 1 and 6.");
+            throw new InvalidHoursException();
         }
         
         var dailyData = await GetGenerationDataAsync(2);

@@ -16,7 +16,7 @@ public class CarbonIntensityController(ICarbonIntensityService carbonIntensitySe
         return Ok(result);
     }
 
-    [HttpGet("charging-window")]
+    [HttpPost("charging-window")]
     public async Task<IActionResult> GetChargingWindow([FromBody] GetChargingWindowRequest request)
     {
         var result = await carbonIntensityService.GetOptimalChargingWindowAsync(request.Hours);
