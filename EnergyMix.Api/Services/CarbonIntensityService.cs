@@ -7,6 +7,73 @@ namespace EnergyMix.Api.Services;
 
 public class CarbonIntensityService(ICarbonIntensityClient carbonIntensityClient) : ICarbonIntensityService
 {
+    // 2nd Endpoint
+    public async Task<ChargingWindowResponse> GetOptimalChargingWindowAsync(int hours)
+    {
+        if (hours < 1 || hours > 6)
+        {
+            throw new ArgumentException("Hours must be between 1 and 6.");
+        }
+        
+        var dailyData = await GetGenerationDataAsync(2);
+        
+        var intervals = dailyData
+            .SelectMany(day => day.Intervals)
+            .OrderBy(x => x.From)
+            .ToList();
+        
+        var intervalPercentages = intervals
+            .Select(x => new
+            {
+                Interval = x,
+                CleanEnergyPercentage = CalculateCleanEnergyPercentage(x)
+            })
+            .ToList();
+        
+        var windowSize = hours * 2;
+        
+        decimal bestAverage = 0;
+        int bestStartIndex = 0;
+
+        for (var i = 0; i <= intervalPercentages.Count - windowSize; i++)
+        {
+            var currentAverage = intervalPercentages
+                .Skip(i)
+                .Take(windowSize)
+                .Average(x => x.CleanEnergyPercentage);
+
+            if (currentAverage > bestAverage)
+            {
+                bestAverage = currentAverage;
+                bestStartIndex = i;
+            }
+        }
+        
+        var startInterval = intervals[bestStartIndex];
+        var endInterval = intervals[bestStartIndex + windowSize - 1];
+
+        return new ChargingWindowResponse
+        {
+            Start = startInterval.From,
+            End = endInterval.To,
+            AverageCleanEnergyPercentage = Math.Round(bestAverage, 2)
+        };
+    }
+    
+    
+    private decimal CalculateCleanEnergyPercentage(GenerationInterval interval)
+    {
+        var cleanEnergySources = new List<string> { "biomass", "nuclear", "hydro", "solar", "wind" };
+        
+        var cleanEnergyPercentage = interval.GenerationMix
+            .Where(x => cleanEnergySources.Contains(x.Fuel))
+            .Sum(x => x.Perc);
+        
+        return Math.Round(cleanEnergyPercentage, 2);
+    }
+    
+    
+    // 1st Endpoint
     public async Task<List<EnergyMixResponse>> GetEnergyMixAsync(int days)
     {
         var dailyData = await GetGenerationDataAsync(days);
