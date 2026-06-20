@@ -14,9 +14,22 @@ public class Program
         builder.Services.AddHttpClient<ICarbonIntensityClient, CarbonIntensityClient>();
         builder.Services.AddScoped<ICarbonIntensityService, CarbonIntensityService>();
         
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowFrontend", policy =>
+            {
+                policy.WithOrigins("http://localhost:4200")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials();
+            });
+        });
+        
         var app = builder.Build();
         
         app.UseHttpsRedirection();
+        
+        app.UseCors("AllowFrontend");
 
         app.UseAuthorization();
         
