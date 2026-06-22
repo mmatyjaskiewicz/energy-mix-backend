@@ -40,6 +40,8 @@ public class Program
         
         app.MapControllers();
         
+        app.MapGet("/", () => "Energy Mix API is running");
+        
         app.Run();
     }
 }
