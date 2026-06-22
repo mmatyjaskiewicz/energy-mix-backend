@@ -8,7 +8,17 @@ namespace EnergyMix.Api.Services;
 
 public class CarbonIntensityService(ICarbonIntensityClient carbonIntensityClient) : ICarbonIntensityService
 {
-    // 2nd Endpoint
+    public async Task<List<EnergyMixResponse>> GetEnergyMixAsync(int days)
+    {
+        var dailyData = await GetGenerationDataAsync(days);
+
+        var result = dailyData
+            .Select(CalculateEnergyMix)
+            .ToList();
+
+        return result;
+    }
+    
     public async Task<ChargingWindowResponse> GetOptimalChargingWindowAsync(int hours)
     {
         if (hours < 1 || hours > 6)
@@ -61,7 +71,6 @@ public class CarbonIntensityService(ICarbonIntensityClient carbonIntensityClient
         };
     }
     
-    
     private decimal CalculateCleanEnergyPercentage(GenerationInterval interval)
     {
         var cleanEnergySources = new List<string> { "biomass", "nuclear", "hydro", "solar", "wind" };
@@ -71,19 +80,6 @@ public class CarbonIntensityService(ICarbonIntensityClient carbonIntensityClient
             .Sum(x => x.Perc);
         
         return Math.Round(cleanEnergyPercentage, 2);
-    }
-    
-    
-    // 1st Endpoint
-    public async Task<List<EnergyMixResponse>> GetEnergyMixAsync(int days)
-    {
-        var dailyData = await GetGenerationDataAsync(days);
-
-        var result = dailyData
-            .Select(CalculateEnergyMix)
-            .ToList();
-
-        return result;
     }
     
     private EnergyMixResponse CalculateEnergyMix(DailyGenerationData day)
