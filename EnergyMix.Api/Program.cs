@@ -21,7 +21,7 @@ public class Program
         {
             options.AddPolicy("AllowFrontend", policy =>
             {
-                policy.WithOrigins("http://localhost:4200", "https://energy-mix-frontend-hn7h.onrender.com/")
+                policy.WithOrigins("http://localhost:4200", "https://energy-mix-frontend-hn7h.onrender.com")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
