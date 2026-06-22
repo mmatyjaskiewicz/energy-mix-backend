@@ -1,0 +1,13 @@
+﻿ENTRYPOINT ["dotnet", "EnergyMix.Api.dll"]services:
+  energymix.api:
+    image: energymix.api
+    build:
+      context: .
+      dockerfile: EnergyMix.Api/Dockerfile
+
+  energymix.tests:
+    image: energymix.tests
+    build:
+      context: .
+      dockerfile: EnergyMix.Tests/Dockerfile
+
